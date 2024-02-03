@@ -3,11 +3,16 @@
 
 <SearchBar @search-movie="searchMovie" 
  :searchError="searchError"/>
- <div class="grid md:cols-4 sm:grid-cols-1
-  justify-items-center bg-cyan-50
+ <div class="flex flex-wrap -mx-4
  ">
- <div v-for="n in 3">
-<MovieCard :title="title" :releaseDate="releaseDate" :movieId="movieId" :poster="poster"/>
+ <div v-for="movie in movies.results" :key="movie.id">
+ <!-- {{ movie }} -->
+<MovieCard 
+  :poster="movie.poster_path"
+  :title="movie.original_title " 
+  :details="movie.overview"
+  :releaseDate="movie.release_date"
+   :movieId="movie.id" />
 </div>
 </div>
     
@@ -26,10 +31,17 @@ const searchMovie=(searchInput)=>{
         searchError.value=false
     }
 }
-const movieId = ref(123)
-const title=ref("Batman Pro")
-const releaseDate =ref("20-01-2023")
-const poster=ref()
+const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+const {data:movies} =useFetch(url,{
+    onRequest({ request, options }) {
+    // Set the request headers
+    options.headers = options.headers || {}
+    options.headers.authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmUxN2U0YzQyMDgxNjdkNDE2N2Q2NjYyNzEwYjExNyIsInN1YiI6IjY1YmUwNDZmOTMxZWExMDE3YzlhYTI5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q5lNz5hm59oPjyXkWvx2dFae9UFnk_fx49HhgvKPniI'
+  },
+}
+)
+
+
 </script>
 
 <style scoped>
