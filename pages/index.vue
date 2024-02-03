@@ -31,15 +31,7 @@ const searchMovie=(searchInput)=>{
         searchError.value=false
     }
 }
-const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
-const {data:movies} =useFetch(url,{
-    onRequest({ request, options }) {
-    // Set the request headers
-    options.headers = options.headers || {}
-    options.headers.authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMmUxN2U0YzQyMDgxNjdkNDE2N2Q2NjYyNzEwYjExNyIsInN1YiI6IjY1YmUwNDZmOTMxZWExMDE3YzlhYTI5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q5lNz5hm59oPjyXkWvx2dFae9UFnk_fx49HhgvKPniI'
-  },
-}
-)
+const {data:movies} =await useFetch("/api/movies")
 
 
 </script>
