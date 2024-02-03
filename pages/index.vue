@@ -3,11 +3,16 @@
 
 <SearchBar @search-movie="searchMovie" 
  :searchError="searchError"/>
- <div class="grid md:cols-4 sm:grid-cols-1
-  justify-items-center bg-cyan-50
+ <div class="flex flex-wrap -mx-4
  ">
- <div v-for="n in 3">
-<MovieCard :title="title" :releaseDate="releaseDate" :movieId="movieId" :poster="poster"/>
+ <div v-for="movie in movies.results" :key="movie.id">
+ <!-- {{ movie }} -->
+<MovieCard 
+  :poster="movie.poster_path"
+  :title="movie.original_title " 
+  :details="movie.overview"
+  :releaseDate="movie.release_date"
+   :movieId="movie.id" />
 </div>
 </div>
     
@@ -26,10 +31,9 @@ const searchMovie=(searchInput)=>{
         searchError.value=false
     }
 }
-const movieId = ref(123)
-const title=ref("Batman Pro")
-const releaseDate =ref("20-01-2023")
-const poster=ref()
+const {data:movies} =await useFetch("/api/movies")
+
+
 </script>
 
 <style scoped>

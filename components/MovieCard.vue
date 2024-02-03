@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="p-4 m-4">
     <NuxtLink to="/">
-      <img src="./public/profile.jpeg" alt="movie" class="w-full h-48 object-cover">
+      <img :src="`https://image.tmdb.org/t/p/w300/`+poster" alt="movie" class="w-full h-48 object-cover">
     </NuxtLink>
     
     <div class="p-4">
@@ -16,7 +16,7 @@
 <script setup>
 
 
-defineProps(["movieId","title","releaseDate","poster"])
+defineProps(["movieId","title","releaseDate","poster","overview"])
 </script>
 
 <style lang="scss" scoped>
