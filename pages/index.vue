@@ -21,19 +21,23 @@
 
 <script setup>
 const searchError = ref(false)
-
-const searchMovie=(searchInput)=>{
+const movies= ref([])
+const searchMovie=async (searchInput)=>{
     // console.log("search text " ,searchInput)
     if(searchInput === '') {
         searchError.value=true
     }
     if(searchInput !== '') {
         searchError.value=false
+        const {data} =await useFetch(`/api/movies/search?searchInput=${searchInput}`)
+        movies.value=data.value
     }
+   
+
 }
-const {data:movies} =await useFetch("/api/movies")
+const {data} =await useFetch("/api/movies")
 
-
+movies.value=data.value
 </script>
 
 <style scoped>
