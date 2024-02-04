@@ -9,8 +9,8 @@
         <p class="text-gray-600 mb-4">{{ details }}</p>
         <p class="text-green-600 font-bold mb-4">Revenue: ${{ revenue }}</p>
         <div class="flex space-x-4">
-          <NuxtLink to="https://www.youtube.com/watch?v=0UEhu4uWUAM" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded">Buy Now</NuxtLink>
-          <NuxtLink class="bg-yellow-500 text-white px-4 py-2 rounded">Watch Trailer</NuxtLink>
+          <NuxtLink :to="`https://www.youtube.com/watch?v=${trailer}`" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded">Watch Trailer</NuxtLink>
+          <NuxtLink class="bg-yellow-500 text-white px-4 py-2 rounded">Buy Now</NuxtLink>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 
 <script setup>
 
-defineProps(["details","title","poster","releaseDate","revenue"])
+defineProps(["details","title","poster","releaseDate","revenue","trailer"])
 
 </script>
 
